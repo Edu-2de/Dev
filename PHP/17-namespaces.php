@@ -1,4 +1,5 @@
 <?php
+namespace App\Financeiro;
 interface Orcavel
 {
     public function calcularOrcamento(): float;
@@ -42,7 +43,7 @@ class Projeto implements Orcavel
     public function setValorHora(float $novoValor)
     {
         if ($novoValor <= 0) {
-            throw new Exception("O valor da hora não pode ser zero ou negativo.\n");
+            throw new \Exception("O valor da hora não pode ser zero ou negativo.\n");
         } else {
             $this->valor_hora = $novoValor;
             return "Novo valor definido!\n";
@@ -104,7 +105,7 @@ echo  $site->mostrarInfos() . " ficou em um total de " . Formatador::moeda($site
 try {
     $app->setValorHora(-50.0);
     echo "Sucesso!\n";
-} catch (Exception $e) {
+} catch (\Exception $e) {
     echo "Erro!: " . $e->getMessage();
 }
 
