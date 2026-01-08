@@ -19,6 +19,8 @@ class Projeto implements Orcavel
     public float $hora;
     private float $valor_hora;
 
+    use Logavel;
+
     public function __construct($nome_recebido, $hora_recebida, $valor_hora_recebido)
     {
         $this->nome = $nome_recebido;
@@ -28,6 +30,7 @@ class Projeto implements Orcavel
 
     public function calcularOrcamento(): float
     {
+        $this->registrarLog("Calculando orçamento...");
         return $this->hora * $this->valor_hora;
     }
 
@@ -81,8 +84,12 @@ class Contrato
 class Consultoria implements Orcavel
 {
     public float $valor_fixo = 150.00;
+
+    use Logavel;
+
     public function calcularOrcamento(): float
     {
+        $this->registrarLog("calculando orçamento...");
         return $this->valor_fixo;
     }
 }
