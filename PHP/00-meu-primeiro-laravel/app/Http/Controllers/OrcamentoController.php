@@ -67,4 +67,28 @@ class OrcamentoController extends Controller
             'orcamento' => $orcamento
         ]);
     }
+
+    public function update(Request $request, $id)
+    {
+        $orcamento = Orcamento::findOrFail($id);
+
+        $request->validate(
+            [
+                'cliente' => 'required',
+                'valor_hora' => 'required|numeric|min:1',
+                'total_horas' => 'required|integer|min:1'
+            ]
+        );
+
+        $novoValorFinal = $request->input('valor_hora') * $request->input('total_horas');
+
+        $orcamento->update([
+            'cliente' => $request->input('cliente'),
+            'valor_hora' => $request->input('valor_hora'),
+            'total_horas' => $request->input('total_horas'),
+            'valor_final' => $novoValorFinal
+        ]);
+
+        return redirect('/');
+    }
 }

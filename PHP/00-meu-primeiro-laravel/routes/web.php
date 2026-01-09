@@ -13,3 +13,5 @@ Route::get('/', [OrcamentoController::class, 'index']);
 Route::delete('/orcamento/{id}', [OrcamentoController::class, 'excluir']);
 
 Route::get('/orcamento/{id}/editar', [OrcamentoController::class, 'editar']);
+
+Route::put('/orcamento/{id}', [OrcamentoController::class, 'update']);
