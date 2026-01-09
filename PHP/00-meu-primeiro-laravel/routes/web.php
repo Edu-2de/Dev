@@ -7,8 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/ola', function () {
-    return "Meu primeiro sistema Laravel!";
-});
+Route::get('/novo-orcamento', [OrcamentoController::class, 'mostrarFormulario']);
 
-Route::get('/orcamento/{valor}/{horas}', [OrcamentoController::class, 'calcular']);
+Route::post('/calcular', [OrcamentoController::class, 'calcular']);
