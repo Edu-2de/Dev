@@ -3,15 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Orcamento;
 
 class OrcamentoController extends Controller
 {
     public function calcular(Request $request)
     {
+
+        $request->validate(
+            [
+                'valor_hora' => 'required|numeric|min:1',
+                'total_horas' => 'required|integer|min:1'
+            ]
+        );
+
         $valor = $request->input('valor_hora');
         $horas = $request->input('total_horas');
-
         $resultado = $valor * $horas;
+
+        Orcamento::create([
+            'cliente' => $request->input('cliente'),
+            'valor_hora' => $valor,
+            'total_horas' => $horas,
+            'valor_final' => $resultado
+        ]);
 
         return view('resultado', [
             'v' => $valor,
