@@ -10,8 +10,8 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
 from functools import wraps
 
-TOKEN = "8249322925:AAHcJp8KtlahumeKTQi6pef69Cd-4ua75IU"
-MEU_ID = 6560993978
+TOKEN = ""
+MEU_ID = 
 
 def run_speech(text):
     try:
