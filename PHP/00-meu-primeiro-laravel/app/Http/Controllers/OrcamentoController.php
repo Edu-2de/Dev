@@ -42,10 +42,21 @@ class OrcamentoController extends Controller
 
 
 
-    public function index(){
+    public function index()
+    {
         $orcamentos = Orcamento::all();
         return view('lista', [
             'orcamentos' => $orcamentos
         ]);
+    }
+
+
+    public function excluir($id)
+    {
+        $orcamento = Orcamento::findOrFail($id);
+
+        $orcamento->delete();
+
+        return redirect('/');
     }
 }
