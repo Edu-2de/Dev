@@ -18,8 +18,16 @@
             @csrf
 
             <div class="mb-4">
-                <label class="block mb-1 text-sm font-semibold">Nome do Cliente:</label>
-                <input  type="text" name="cliente" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none" required>
+                <label class="block mb-1 text-sm font-semibold">Selecione o Cliente:</label>
+
+                <select name="cliente_id" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none bg-white">
+                    <option value="">-- Escolha um cliente --</option>
+
+                    @foreach($clientes as $cliente)
+                        <option value="{{ $cliente->id }}">{{ $cliente->nome }}</option>
+                    @endforeach
+
+                </select>
             </div>
 
             <div class="mb-4">
