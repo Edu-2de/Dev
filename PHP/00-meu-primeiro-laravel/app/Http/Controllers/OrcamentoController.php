@@ -65,7 +65,7 @@ class OrcamentoController extends Controller
 
         $request->validate(
             [
-                'cliente' => 'required',
+                'cliente_id' => 'required|exists:clientes,id',
                 'valor_hora' => 'required|numeric|min:1',
                 'total_horas' => 'required|integer|min:1'
             ]
@@ -74,7 +74,7 @@ class OrcamentoController extends Controller
         $novoValorFinal = $request->input('valor_hora') * $request->input('total_horas');
 
         $orcamento->update([
-            'cliente' => $request->input('cliente'),
+            'cliente_id' => $request->input('cliente_id'),
             'valor_hora' => $request->input('valor_hora'),
             'total_horas' => $request->input('total_horas'),
             'valor_final' => $novoValorFinal

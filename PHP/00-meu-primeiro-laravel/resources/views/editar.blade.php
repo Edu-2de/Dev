@@ -12,12 +12,23 @@
             @csrf
             @method('PUT')
 
-            @foreach($cliente as $cliente)
-                <option value="{{cliente -> id}}" {{$orcamento->cliente_id == $cliente->id? 'selected' : ''}}>{{$cliente->nome}}</option>
-            @endforeach
+
             <div class="mb-4">
-                <label class="block mb-1 text-sm font-semibold">Nome do Cliente:</label>
-                <input type="text" name="cliente" value="{{ $orcamento->cliente->nome }}" class="w-full border p-2 rounded..." required>
+                <label class="block mb-1 text-sm font-semibold">Cliente:</label>
+                <select name="cliente_id" class="w-full border p-2 rounded...">
+
+                    @foreach($clientes as $cliente)
+                        <option
+                            value="{{ $cliente->id }}"
+
+                            {{-- O TRUQUE: Se o ID desse cliente for igual ao ID salvo no orçamento, marque ele --}}
+                            {{ $orcamento->cliente_id == $cliente->id ? 'selected' : '' }}
+                        >
+                            {{ $cliente->nome }}
+                        </option>
+                    @endforeach
+
+                </select>
             </div>
 
             <div class="mb-4">
